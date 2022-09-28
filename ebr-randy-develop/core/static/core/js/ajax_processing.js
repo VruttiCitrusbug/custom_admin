@@ -60,12 +60,113 @@ $(document).ready(function(){
         columns: [
             { data: 'id', name: 'id' },
             { data: 'year', name: 'year' },
-            { data: 'actions', name: 'actions' },
+            { data: 'actions', name: 'actions' }
         ],
     });
+    $('#breaktype-table').DataTable({
+        pageLength: 25,
+        responsive: true,
+        order: [[ 0, "desc" ]],
+        columnDefs: [{
+            orderable: false,
+            targets: [-1, -2]
+        },],
 
+        // Ajax for pagination
+        "language":
+        {
+            "processing": "<b><i class='fa fa-refresh fa-spin'></i>&nbsp;Loading....</b>",
+        },
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: window.pagination_url,
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'break_type', name: 'break_type' },
+            { data: 'actions', name: 'actions' }
+        ],
+    });
+    $('#wheelsize-table').DataTable({
+        pageLength: 25,
+        responsive: true,
+        order: [[ 0, "desc" ]],
+        columnDefs: [{
+            orderable: false,
+            targets: [-1, -2]
+        },],
 
+        // Ajax for pagination
+        "language":
+        {
+            "processing": "<b><i class='fa fa-refresh fa-spin'></i>&nbsp;Loading....</b>",
+        },
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: window.pagination_url,
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'wheel_size', name: 'wheel_size' },
+            { data: 'actions', name: 'actions' }
+        ],
+    });
+    $('#frametype-table').DataTable({
+        pageLength: 25,
+        responsive: true,
+        order: [[ 0, "desc" ]],
+        columnDefs: [{
+            orderable: false,
+            targets: [-1, -2]
+        },],
 
+        // Ajax for pagination
+        "language":
+        {
+            "processing": "<b><i class='fa fa-refresh fa-spin'></i>&nbsp;Loading....</b>",
+        },
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: window.pagination_url,
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'frame_type', name: 'frame_type' },
+            { data: 'actions', name: 'actions' }
+        ],
+    });
+    $('#bikeclass-table').DataTable({
+        pageLength: 25,
+        responsive: true,
+        order: [[ 0, "desc" ]],
+        columnDefs: [{
+            orderable: false,
+            targets: [-1, -2]
+        },],
+
+        // Ajax for pagination
+        "language":
+        {
+            "processing": "<b><i class='fa fa-refresh fa-spin'></i>&nbsp;Loading....</b>",
+        },
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: window.pagination_url,
+            type: 'get',
+        },
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'bike_class', name: 'bike_class' },
+            { data: 'actions', name: 'actions' }
+        ],
+    });
     // ---------- Review Category Server-side processing END  ----------
     
     // ---------- Review Brand Server-side processing START  ----------

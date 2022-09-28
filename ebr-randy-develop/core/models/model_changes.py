@@ -23,54 +23,6 @@ class ModelYear(models.Model):
             ]
     def get_absolute_url(self):
         return f'/category/{self.year}/'
-
-
-
-
-# class ReviewCategory(models.Model):
-# 	name = models.CharField(max_length=255)
-# 	slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
-# 	meta_title = models.CharField(max_length=255, null=True, blank=True)
-# 	description = models.TextField()
-# 	short_description = models.TextField()
-# 	category_image_full = models.ImageField(upload_to='category-images/', null=True, blank=True)
-# 	category_image_web = models.ImageField(upload_to='category-web-images/', null=True, blank=True)
-# 	category_image_mobile = models.ImageField(upload_to='category-mobile-images/', null=True, blank=True)
-# 	icon_image = models.ImageField(upload_to='category-icon-images/', null=True, blank=True)
-# 	parent_category = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
-# 	status = models.CharField(max_length=50, choices=PUBLISH_STATUS, default='Draft')
-# 	featured_review = models.CharField(max_length=100, null=True, blank=True)
-# 	create_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-# 	create_at = models.DateTimeField(auto_now_add=True)
-# 	update_at = models.DateTimeField(auto_now=True)
-
-# 	def __str__(self):
-# 		return str(self.name)
-
-# 	def save(self, *args, **kwargs):
-# 		if self.category_image_full:
-# 			self.category_image_mobile = resize_image(self.category_image_full, (97, 52))
-# 			self.category_image_web = resize_image(self.category_image_full, (432, 239))
-# 		super().save(*args, *kwargs)
-
-# 	def get_absolute_url(self):
-# 		return f'/category/{self.slug}/'
-
-
-# 	class Meta:
-# 		db_table = "review_category"
-# 		verbose_name = "Review category"
-# 		verbose_name_plural = "Review categories"
-# 		indexes = [
-# 			models.Index(fields=['id']),
-# 			models.Index(fields=['name']),
-# 			models.Index(fields=['slug']),
-# 		]
-
-
-
-
-
         
 
 class BikeClass(models.Model):
@@ -84,7 +36,16 @@ class BikeClass(models.Model):
         return str(self.bike_class)
 
     class Meta:
-	    db_table = "bike_class_changes"
+            db_table = "bike_class_changes"
+            verbose_name = "BikeClass"
+            verbose_name_plural = "BikeClass"
+            indexes = [
+                models.Index(fields=['id']),
+                models.Index(fields=['bike_class'])
+            ]
+    def get_absolute_url(self):
+        return f'/category/{self.bike_class}/'
+
 
 class FrameType(models.Model):
     frame_type = models.CharField(max_length=255, null=True, blank=True)
@@ -96,9 +57,18 @@ class FrameType(models.Model):
     def __str__(self):
         return str(self.frame_type)
 
+    # class Meta:
+	#     db_table = "frame_type_changes"
     class Meta:
-	    db_table = "frame_type_changes"
-
+            db_table = "frame_type_changes"
+            verbose_name = "FrameType"
+            verbose_name_plural = "FrameType"
+            indexes = [
+                models.Index(fields=['id']),
+                models.Index(fields=['frame_type'])
+            ]
+    def get_absolute_url(self):
+        return f'/category/{self.frame_type}/'
 
 class WheelSize(models.Model):
     wheel_size = models.FloatField(null=True, blank=True)
@@ -110,8 +80,18 @@ class WheelSize(models.Model):
     def __str__(self):
         return str(self.wheel_size)
 
+    # class Meta:
+	#     db_table = "wheel_size_changes"
     class Meta:
-	    db_table = "wheel_size_changes"
+            db_table = "wheel_size_changes"
+            verbose_name = "WheelSize"
+            verbose_name_plural = "WheelSize"
+            indexes = [
+                models.Index(fields=['id']),
+                models.Index(fields=['wheel_size'])
+            ]
+    def get_absolute_url(self):
+        return f'/category/{self.wheel_size}/'
 
 
 class BreakType(models.Model):
@@ -124,5 +104,15 @@ class BreakType(models.Model):
     def __str__(self):
         return str(self.break_type)
 
+    # class Meta:
+	#     db_table = "break_type_changes"
     class Meta:
-	    db_table = "break_type_changes"
+            db_table = "break_type_changes"
+            verbose_name = "BreakType"
+            verbose_name_plural = "BreakType"
+            indexes = [
+                models.Index(fields=['id']),
+                models.Index(fields=['break_type'])
+            ]
+    def get_absolute_url(self):
+        return f'/category/{self.break_type}/'

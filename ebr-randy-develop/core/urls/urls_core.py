@@ -25,6 +25,32 @@ urlpatterns = [
 	path("yearlistview/", views.YearListView.as_view(), name="modelyear-list"),
 	path("yearlistview/create/", views.YearCreateView.as_view(), name="modelyear-create"),
 	path("ajax-year", views.YearAjaxPagination.as_view(), name="modelyear-list-ajax"),
+	path("year/<int:pk>/update/", views.YearUpdateView.as_view(), name="modelyear-update"),
+	path("year/<int:pk>/delete/", views.YearDeleteView.as_view(), name="modelyear-delete"),
+
+	path("breaktypelistview/", views.BreakTypeListView.as_view(), name="breaktype-list"),
+	path("breaktypelistview/create/", views.BreakTypeCreateView.as_view(), name="breaktype-create"),
+	path("ajax-breaktype", views.BreakTypeAjaxPagination.as_view(), name="breaktype-list-ajax"),
+	path("breaktype/<int:pk>/update/", views.BreakTypeUpdateView.as_view(), name="breaktype-update"),
+	path("breaktype/<int:pk>/delete/", views.BreakTypeDeleteView.as_view(), name="breaktype-delete"),
+
+	path("wheelsizelistview/", views.WheelSizeListView.as_view(), name="wheelsize-list"),
+	path("wheelsizelistview/create/", views.WheelSizeCreateView.as_view(), name="wheelsize-create"),
+	path("ajax-wheelsize", views.WheelSizeAjaxPagination.as_view(), name="wheelsize-list-ajax"),
+	path("wheelsize/<int:pk>/update/", views.WheelSizeUpdateView.as_view(), name="wheelsize-update"),
+	path("wheelsize/<int:pk>/delete/", views.WheelSizeDeleteView.as_view(), name="wheelsize-delete"),   
+	
+	path("frametypelistview/", views.FrameTypeListView.as_view(), name="frametype-list"),
+	path("frametypelistview/create/", views.FrameTypeCreateView.as_view(), name="frametype-create"),
+	path("ajax-frametype", views.FrameTypeAjaxPagination.as_view(), name="frametype-list-ajax"),
+	path("frametype/<int:pk>/update/", views.FrameTypeUpdateView.as_view(), name="frametype-update"),
+	path("frametype/<int:pk>/delete/", views.FrameTypeDeleteView.as_view(), name="frametype-delete"),   
+# BikeClass
+	path("bikeclasslistview/", views.BikeClassListView.as_view(), name="bikeclass-list"),
+	path("bikeclasslistview/create/", views.BikeClassCreateView.as_view(), name="bikeclass-create"),
+	path("ajax-bikeclass", views.BikeClassAjaxPagination.as_view(), name="bikeclass-list-ajax"),
+	path("bikeclass/<int:pk>/update/", views.BikeClassUpdateView.as_view(), name="bikeclass-update"),
+	path("bikeclass/<int:pk>/delete/", views.BikeClassDeleteView.as_view(), name="bikeclass-delete"),
 
 	# Review Brand Module
 	path("review-brand/", views.ReviewBrandListView.as_view(), name="reviewbrand-list"),

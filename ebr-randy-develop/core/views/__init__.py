@@ -37,6 +37,32 @@ from .comments import (
 from .view_changes import (
     YearListView,
     YearCreateView,
-    YearAjaxPagination
+    YearAjaxPagination,
+    YearUpdateView,
+    YearDeleteView,
+
+    BreakTypeListView,
+    BreakTypeCreateView,
+    BreakTypeAjaxPagination,
+    BreakTypeUpdateView,
+    BreakTypeDeleteView,
+
+    WheelSizeListView,
+    WheelSizeCreateView,
+    WheelSizeAjaxPagination,
+    WheelSizeUpdateView,
+    WheelSizeDeleteView,
+
+    FrameTypeListView,
+    FrameTypeCreateView,
+    FrameTypeAjaxPagination,
+    FrameTypeUpdateView,
+    FrameTypeDeleteView,
+
+    BikeClassListView,
+    BikeClassCreateView,
+    BikeClassAjaxPagination,
+    BikeClassUpdateView,
+    BikeClassDeleteView
 )
 

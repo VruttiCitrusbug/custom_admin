@@ -3,6 +3,7 @@ from django.urls import path, re_path
 
 app_name = 'auth'
 urlpatterns = [
+    path("customnot/", auth_views.LoginView.as_view(template_name='core/ebr/registration/login.html'), name="auth_login"),
 
     # Login / Logout
     path("login/", auth_views.LoginView.as_view(template_name='core/ebr/registration/login.html'), name="auth_login"),

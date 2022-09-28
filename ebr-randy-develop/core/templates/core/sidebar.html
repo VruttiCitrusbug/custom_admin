@@ -46,7 +46,38 @@
                     </a>
                 </li>
             {% endif %}
-
+            {% if perms.core.add_reviewcategory or perms.core.view_reviewcategory or perms.core.change_reviewcategory or perms.core.delete_reviewcategory or request.user.is_superuser %}
+                <li {% if 'breaktypelistview/' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'core:breaktype-list' %}">
+                        <i class="fa fa-list-alt fa-fw fa-2x"></i>
+                        <span class="nav-label">BreakType</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if perms.core.add_reviewcategory or perms.core.view_reviewcategory or perms.core.change_reviewcategory or perms.core.delete_reviewcategory or request.user.is_superuser %}
+                <li {% if 'frametypelistview/' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'core:frametype-list' %}">
+                        <i class="fa fa-list-alt fa-fw fa-2x"></i>
+                        <span class="nav-label">FrameType</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if perms.core.add_reviewcategory or perms.core.view_reviewcategory or perms.core.change_reviewcategory or perms.core.delete_reviewcategory or request.user.is_superuser %}
+                <li {% if 'bikeclasslistview/' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'core:bikeclass-list' %}">
+                        <i class="fa fa-list-alt fa-fw fa-2x"></i>
+                        <span class="nav-label">BikeClass</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if perms.core.add_reviewcategory or perms.core.view_reviewcategory or perms.core.change_reviewcategory or perms.core.delete_reviewcategory or request.user.is_superuser %}
+                <li {% if 'wheelsizelistview/' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'core:wheelsize-list' %}">
+                        <i class="fa fa-list-alt fa-fw fa-2x"></i>
+                        <span class="nav-label">WheelSize</span>
+                    </a>
+                </li>
+            {% endif %}
 
 
 

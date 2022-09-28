@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from core.models import ReviewCategory,ModelYear
-
+from core.models import ReviewCategory,ModelYear,BikeClass,FrameType,BreakType,WheelSize,BikeClass
+import re
 
 # -----------------------------------------------------------------------------
 # ReviewCategory
@@ -115,33 +115,245 @@ class YearCreationForm(forms.ModelForm):
             "year": "year"
         }
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     for field in self.fields:
-    #         # if field not in ['category_image_full', 'icon_image']:
-    #         #     self.fields[field].widget.attrs.update({'class': 'form-control'})
-    #         self.fields['year'].widget.attrs.update({'autofocus': 'autofocus'})
-
     def clean(self):
         cleaned_data = super(YearCreationForm, self).clean()
         year = cleaned_data.get("year")
-        # description = cleaned_data.get("description")
-        # category_image_full = cleaned_data.get("category_image_full")
 
         if not year:
             raise forms.ValidationError("Please enter year.")
 
-        # if not description:
-        #     raise forms.ValidationError("Please enter description.")
-
-        if len(year) != 4:
+        count = 0
+        num=year
+        while num != 0:
+            num //= 10
+            count += 1
+        if count != 4:
                 raise forms.ValidationError("Please enter valid year")
-        # if len(year) != 4:
-        #         raise forms.ValidationError("Please enter valid year")
 
     def save(self, commit=True):
         instance = super().save(commit=False)
         if commit:
             instance.save()
 
+        return instance
+
+class BikeClassCreationForm(forms.ModelForm):
+    """Custom ReviewCategory"""
+    bike_class = forms.CharField()
+
+    class Meta:
+        model = BikeClass
+        fields = ['bike_class']
+        labels = {
+            "bike_class": "bike_class"
+        }
+
+    def clean(self):
+        cleaned_data = super(BikeClassCreationForm, self).clean()
+        bike_class = cleaned_data.get("bike_class")
+
+        if not bike_class:
+            raise forms.ValidationError("This Field is Require.")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+
+        return instance
+
+class FrameTypeCreationForm(forms.ModelForm):
+    """Custom ReviewCategory"""
+    frame_type = forms.CharField()
+
+    class Meta:
+        model = FrameType
+        fields = ['frame_type']
+        labels = {
+            "bike_class": "bike_class"
+        }
+
+    def clean(self):
+        cleaned_data = super(FrameTypeCreationForm, self).clean()
+        frame_type = cleaned_data.get("frame_type")
+
+        if not frame_type:
+            raise forms.ValidationError("This Field is Require.")
+        if re.match(r'^[0-9]+$',frame_type):
+                raise forms.ValidationError("only alphabelts are allowed")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+
+        return instance
+class BreakTypeCreationForm(forms.ModelForm):
+    """Custom ReviewCategory"""
+    break_type = forms.CharField()
+
+    class Meta:
+        model = BreakType
+        fields = ['break_type']
+        labels = {
+            "break_type": "break_type"
+        }
+
+    def clean(self):
+        cleaned_data = super(BreakTypeCreationForm, self).clean()
+        break_type = cleaned_data.get("break_type")
+
+        if not break_type:
+            raise forms.ValidationError("This Field is Require.")
+        if not re.match(r'^[A-za-z]+$',break_type):
+                raise forms.ValidationError("only alphabelts are allowed")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+
+        return instance
+
+class WheelSizeCreationForm(forms.ModelForm):
+    """Custom ReviewCategory"""
+    break_type = forms.CharField()
+
+    class Meta:
+        model = WheelSize
+        fields = ['wheel_size']
+        labels = {
+            "wheel_size": "wheel_size"
+        }
+
+    def clean(self):
+        cleaned_data = super(WheelSizeCreationForm, self).clean()
+        wheel_size = cleaned_data.get("wheel_size")
+
+        if not wheel_size:
+            raise forms.ValidationError("This Field is Require.")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+
+        return instance
+
+
+class YearChangeForm(forms.ModelForm):
+    """Custom form to change ReviewCategory"""
+    # meta_title = forms.CharField(required=True, label='Meta Title', widget=forms.TextInput(attrs={'placeholder': '| ElectricBikeReview.com', 'readonly': True}))
+
+    class Meta:
+        model = ModelYear
+        fields = ['year']
+        labels = {
+            "Year": "year"
+        }
+    def clean(self):
+        cleaned_data = super(YearChangeForm, self).clean()
+        year = cleaned_data.get("year")
+        if not year:
+            raise forms.ValidationError("Please enter year.")
+        count = 0
+        num=year
+        while num != 0:
+            num //= 10
+            count += 1
+        if count != 4:
+                raise forms.ValidationError("Please enter valid year")
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
+
+class BreakTypeChangeForm(forms.ModelForm):
+    """Custom form to change ReviewCategory"""
+    # meta_title = forms.CharField(required=True, label='Meta Title', widget=forms.TextInput(attrs={'placeholder': '| ElectricBikeReview.com', 'readonly': True}))
+
+    class Meta:
+        model = BreakType
+        fields = ['break_type']
+        labels = {
+            "break_type": "break_type"
+        }
+    def clean(self):
+        cleaned_data = super(BreakTypeChangeForm, self).clean()
+        break_type = cleaned_data.get("break_type")
+
+        if not break_type:
+            raise forms.ValidationError("This Field is Require.")
+
+        if not re.match(r'^[A-Za-z]+$',break_type):
+                raise forms.ValidationError("only alphabelts are allowed")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
+
+class FrameTypeChangeForm(forms.ModelForm):
+
+    class Meta:
+        model = FrameType
+        fields = ['frame_type']
+        labels = {
+            "frame_type": "frame_type"
+        }
+    def clean(self):
+        cleaned_data = super(FrameTypeChangeForm, self).clean()
+        frame_type = cleaned_data.get("frame_type")
+
+        if not frame_type:
+            raise forms.ValidationError("This Field is Require.")
+        if re.match(r'^[0-9]+$',frame_type):
+                raise forms.ValidationError("only alphabelts are allowed")
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
+
+class WheelSizeChangeForm(forms.ModelForm):
+
+    class Meta:
+        model = WheelSize
+        fields = ['wheel_size']
+        labels = {
+            "wheel_size": "wheel_size"
+        }
+    def clean(self):
+        cleaned_data = super(WheelSizeChangeForm, self).clean()
+        wheel_size = cleaned_data.get("wheel_size")
+
+        if not wheel_size:
+            raise forms.ValidationError("This Field is Require.")
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
+
+class BikeClassChangeForm(forms.ModelForm):
+
+    class Meta:
+        model = BikeClass
+        fields = ['bike_class']
+        labels = {
+            "bike_class": "bike_class"
+        }
+    def clean(self):
+        cleaned_data = super(BikeClassChangeForm, self).clean()
+        bike_class = cleaned_data.get("bike_class")
+
+        if not bike_class:
+            raise forms.ValidationError("This Field is Require.")
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
         return instance
