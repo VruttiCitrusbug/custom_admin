@@ -34,6 +34,14 @@ urlpatterns = [
     # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps, 'template_name': 'frontend/custom_sitemap.html'}),
     re_path(r"^ckeditor/", include("ckeditor_uploader.urls")),
+
+
+    #change
+
+
+    path('customlogin/',include('customloginapp.urls'))
+
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

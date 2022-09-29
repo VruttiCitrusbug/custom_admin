@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     # Sitemap lib
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    # login
+    'customloginapp'
 ]
 
 MIDDLEWARE = [

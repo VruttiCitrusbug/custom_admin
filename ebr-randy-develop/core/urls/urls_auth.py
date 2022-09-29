@@ -3,14 +3,14 @@ from django.urls import path, re_path
 
 app_name = 'auth'
 urlpatterns = [
-    path("customnot/", auth_views.LoginView.as_view(template_name='core/ebr/registration/login.html'), name="auth_login"),
+    # path("customnot/", auth_views.LoginView.as_view(template_name='core/ebr/registration/login.html'), name="auth_login"),
 
     # Login / Logout
     path("login/", auth_views.LoginView.as_view(template_name='core/ebr/registration/login.html'), name="auth_login"),
     path(
         "logout/",
         auth_views.LogoutView.as_view(),
-        {'next_page': 'auth:auth_login'},  # redirect user
+        {'next_page': 'auth:login'},  # redirect user
         name="auth_logout",
     ),
     # Password Change
