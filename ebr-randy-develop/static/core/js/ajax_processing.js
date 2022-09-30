@@ -38,15 +38,17 @@ $(document).ready(function(){
 
 
     $('#modelyear-table').DataTable({
-        pageLength: 25,
-        responsive: true,
-        order: [[ 0, "desc" ]],
-        columnDefs: [{
-            orderable: false,
-            targets: [-1, -2]
-        },],
+    //     pageLength: 25,
+    //     responsive: true,
+    //     order: [[ 0, "desc" ]],
+    //     // order: [[ 1, "desc" ]],
+    //     columnDefs: [
+    //         {
+    //         orderable: false,
+    //        targets: [0,1]
+    //     },],
 
-        // Ajax for pagination
+    //     // Ajax for pagination
         "language":
         {
             "processing": "<b><i class='fa fa-refresh fa-spin'></i>&nbsp;Loading....</b>",

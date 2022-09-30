@@ -16,14 +16,14 @@ class MyAuthenticationForm(forms.Form):
 
 
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     username = cleaned_data.get('username')
-    #     password = cleaned_data.get('password')
-    #     # user=auth.authenticate(username=username,password=password)
-    #     # if user is not None:
-    #     #     if user.is_superuser:
-    #     #         raise ValidationError("Not admin")
-    #     # if user is None:
-    #     #     raise ValidationError("invalid data")
-    #     return cleaned_data
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+        user=auth.authenticate(username=username,password=password)
+        if user is not None:
+            if not user.is_superuser:
+                raise ValidationError("Not admin")
+        if user is None:
+            raise ValidationError("invalid data")
+        return cleaned_data

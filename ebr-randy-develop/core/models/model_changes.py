@@ -19,7 +19,6 @@ class ModelYear(models.Model):
             indexes = [
                 models.Index(fields=['id']),
                 models.Index(fields=['year'])
-                # models.Index(fields=['slug']),
             ]
     def get_absolute_url(self):
         return f'/category/{self.year}/'
