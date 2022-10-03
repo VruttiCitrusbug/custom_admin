@@ -106,8 +106,8 @@ class ReviewCategoryChangeForm(forms.ModelForm):
 
 class YearCreationForm(forms.ModelForm):
     """Custom ReviewCategory"""
-    year = forms.IntegerField()
-
+    # year = forms.IntegerField(required=False,widget=forms.NumberInput(attrs={'id':'aaa'}))
+    
     class Meta:
         model = ModelYear
         fields = ['year']
@@ -120,7 +120,7 @@ class YearCreationForm(forms.ModelForm):
         year = cleaned_data.get("year")
 
         if not year:
-            raise forms.ValidationError("Please enter year.")
+            raise forms.ValidationError("Please enter valid year.")
 
         count = 0
         num=year
@@ -129,6 +129,30 @@ class YearCreationForm(forms.ModelForm):
             count += 1
         if count != 4:
                 raise forms.ValidationError("Please enter valid year")
+    # def __init__(self, *args, **kwargs):
+    #     super(YearCreationForm, self).__init__(*args, **kwargs)
+    #     self.fields['year'].widget.attrs['id'] = 'aaa'
+    def __init__(self, *args, **kwargs):
+        super(YearCreationForm, self).__init__(*args, **kwargs)
+        self.fields['year'].required = False
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'iiiiiiiiiiii'
+            
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     for field in self.fields:
+    #         if not field:
+    #             self.fields[field].widget.attrs.update({'class': 'form-control'})
+    #         self.fields['year'].widget.attrs.update({'autofocus': 'autofocus'})
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     for field in self.fields:
+
+            # if not field:
+            #     self.fields[field].widget.attrs.update({'class': 'form-control'})
+            #     print("***************************************************************************************************************{}".format(self.fields[field].widget.attrs.update({'class': 'form-control'})))
+            # self.fields['year'].widget.attrs.update({'autofocus': 'autofocus'})
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -207,6 +231,9 @@ class BreakTypeCreationForm(forms.ModelForm):
             raise forms.ValidationError("This Field is Require.")
         if not re.match(r'^[A-za-z]+$',break_type):
                 raise forms.ValidationError("only alphabelts are allowed")
+    def __init__(self, *args, **kwargs):
+        super(BreakTypeCreationForm, self).__init__(*args, **kwargs)
+        self.fields['break_type'].required = False
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -240,11 +267,41 @@ class WheelSizeCreationForm(forms.ModelForm):
 
         return instance
 
+# class YearCreationForm(forms.ModelForm):
+#   
+#     year = forms.IntegerField(widget=forms.NumberInput(attrs={'id':'aaa'}))
+    
+#     class Meta:
+#         model = ModelYear
+#         fields = ['year']
+#         labels = {
+#             "year": "year"
+#         }
+
+#     def clean(self):
+#         cleaned_data = super(YearCreationForm, self).clean()
+#         year = cleaned_data.get("year")
+
+#         if not year:
+#             raise forms.ValidationError("Please enter valid year.")
+
+#         count = 0
+#         num=year
+#         while num != 0:
+#             num //= 10
+#             count += 1
+#         if count != 4:
+#                 raise forms.ValidationError("Please enter valid year")
+
+#     def save(self, commit=True):
+#         instance = super().save(commit=False)
+#         if commit:
+#             instance.save()
+
+#         return instance
 
 class YearChangeForm(forms.ModelForm):
-    """Custom form to change ReviewCategory"""
-    # meta_title = forms.CharField(required=True, label='Meta Title', widget=forms.TextInput(attrs={'placeholder': '| ElectricBikeReview.com', 'readonly': True}))
-
+    
     class Meta:
         model = ModelYear
         fields = ['year']
@@ -263,6 +320,8 @@ class YearChangeForm(forms.ModelForm):
             count += 1
         if count != 4:
                 raise forms.ValidationError("Please enter valid year")
+        if num <1853 :
+            raise forms.ValidationError("enter value greater equal to 1853")
     def save(self, commit=True):
         instance = super().save(commit=False)
         if commit:

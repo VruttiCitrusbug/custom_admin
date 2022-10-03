@@ -56,7 +56,7 @@ urlpatterns = [
 	path("review-brand/", views.ReviewBrandListView.as_view(), name="reviewbrand-list"),
 	path("review-brand/create/", views.ReviewBrandCreateView.as_view(), name="reviewbrand-create"),
 	path("review-brand/<int:pk>/update/", views.ReviewBrandUpdateView.as_view(), name="reviewbrand-update"),
-	path("review-brand/<int:pk>/delete/", views.ReviewBrandDeleteView.as_view(), name="reviewbrand-delete"),
+	path("review-brand/<int:pk>/delete/", views.ReviewBrandDeleteView .as_view(), name="reviewbrand-delete"),
 	path("ajax-review-brand", views.ReviewBrandAjaxPagination.as_view(), name="reviewbrand-list-ajax"),
 
 	# Review Module
@@ -88,12 +88,6 @@ urlpatterns = [
 	path("menus/<int:pk>/delete/", views.MenusDeleteView.as_view(), name="menus-delete"),
 	path("ajax-menus", views.MenusAjaxPagination.as_view(), name="menus-list-ajax"),
 
-	# TrustedAccessories Module
-	# path("trusted-accessories/", views.TrustedAccessoriesListView.as_view(), name="trustedaccessories-list"),
-	# path("trusted-accessories/create/", views.TrustedAccessoriesCreateView.as_view(), name="trustedaccessories-create"),
-	# path("trusted-accessories/<int:pk>/update/", views.TrustedAccessoriesUpdateView.as_view(), name="trustedaccessories-update"),
-	# path("trusted-accessories/<int:pk>/delete/", views.TrustedAccessoriesDeleteView.as_view(), name="trustedaccessories-delete"),
-	# path("ajax-trusted-accessories", views.TrustedAccessoriesAjaxPagination.as_view(), name="trustedaccessories-list-ajax"),
 
 	# Comment Module
 	path("comments/", views.CommentsListView.as_view(), name="comments-list"),

@@ -204,7 +204,6 @@ class YearAjaxPagination(DataTableMixin, HasPermissionsMixin, MyLoginRequiredVie
         # If a search term, filter the query
         if self.search:
             return qs.filter(
-                Q(year__icontains=self.search) |
                 Q(year__icontains=self.search)
             )
         return qs
@@ -271,7 +270,6 @@ class BikeClassAjaxPagination(DataTableMixin, HasPermissionsMixin, MyLoginRequir
         # If a search term, filter the query
         if self.search:
             return qs.filter(
-                Q(bike_class__icontains=self.search) |
                 Q(bike_class__icontains=self.search)
             )
         return qs

@@ -6,7 +6,7 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 
-
+{% comment %} <input type="number" name="year" value="2025" min="0" class="numberinput" id="id_year"> {% endcomment %}
 {% block page_content %}
     <form id="{{ opts.model_name }}-form" action="" method="post" enctype="multipart/form-data" autocomplete="off">
         {% comment %} {{ form.media }} {% endcomment %}
@@ -33,28 +33,5 @@
 
 {% block js %}
     {{ block.super }}
-    <script>
 
-        function titleCase(str) {
-          str.toLowerCase();
-          var strAr = str.split(" ");
-          for(var i=0;i<strAr.length;i++)
-          {
-             strAr[i] = strAr[i].charAt(0).toUpperCase() + strAr[i].substring(1).toLowerCase();
-          }
-          str = strAr.join(" ");
-          return str;
-        }
-
-
-        $('#id_name').on('keyup', function(){
-            static_meta = ' | ElectricBikeReview.com';
-            name = $(this).val();
-            link = $('#id_meta_title').val(titleCase(name)+static_meta);
-        });
-
-        $('#id_meta_title').on('dblclick', function(){
-            $('#id_meta_title').attr('readonly', false)
-        });
-    </script>
 {% endblock %}
